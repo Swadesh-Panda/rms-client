@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 
-import DefaultTheme from '../theme/DefaultTheme'
 import DefaultLayout from '../components/common/layout/DefaultLayout'
 
 import Home from './Home'
@@ -11,29 +10,27 @@ import NotFound from '../components/error/404'
 
 function App() {
   return (
-    <DefaultTheme>
-      <DefaultLayout>
-        <Routes>
-          <Route
-            path='/'
-            element={<Home />}
-          />
-          <Route
-            path='/cart'
-            element={<Cart />}
-          />
-          <Route
-            path='/settings'
-            element={<Settings />}
-          />
+    <DefaultLayout>
+      <Routes>
+        <Route
+          path='/'
+          element={<Home />}
+        />
+        <Route
+          path='/cart'
+          element={<Cart />}
+        />
+        <Route
+          path='/settings'
+          element={<Settings />}
+        />
 
-          <Route
-            path='*'
-            element={<NotFound />}
-          />
-        </Routes>
-      </DefaultLayout>
-    </DefaultTheme>
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
+      </Routes>
+    </DefaultLayout>
   )
 }
 

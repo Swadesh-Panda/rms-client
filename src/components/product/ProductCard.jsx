@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 // Material
 import {
@@ -13,6 +13,8 @@ import {
   ButtonGroup,
   Button,
   Slide,
+  Snackbar,
+  Alert,
 } from '@mui/material'
 import {
   LocalMallOutlined,
@@ -21,43 +23,15 @@ import {
   LocalMall,
   AccessTimeRounded,
   CurrencyRupeeRounded,
+  Close,
 } from '@mui/icons-material'
 
 const ProductCard = ({ product }) => {
   const { title, src, time, price, category } = product
-
-  const [addCart, setAddCart] = useState(false)
   const [count, setCount] = useState(0)
 
-  const CustomButtonGroup = () => {
-    return (
-      <ButtonGroup
-        disableElevation
-        variant='contained'
-        size='small'
-        color='inherit'
-        sx={{
-          position: 'absolute',
-          right: '0px',
-          top: '-32px',
-        }}
-      >
-        <Button sx={{ borderRadius: '5px 0px' }}>
-          <RemoveRounded />
-        </Button>
-
-        <Button sx={{ borderRadius: '0px' }}>
-          <AddRounded />
-        </Button>
-      </ButtonGroup>
-    )
-  }
-
   return (
-    <Card
-      variant='outlined'
-      sx={{ borderRadius: '12px' }}
-    >
+    <Card>
       <CardMedia
         component='img'
         height='160px'
@@ -103,7 +77,7 @@ const ProductCard = ({ product }) => {
               disableElevation
               variant='contained'
               size='small'
-              color='success'
+              color='inherit'
               sx={{
                 position: 'absolute',
                 right: '0px',
@@ -111,7 +85,7 @@ const ProductCard = ({ product }) => {
               }}
             >
               <Button
-                sx={{ borderRadius: '8px 0px' }}
+                sx={{ borderRadius: '5px 0px' }}
                 onClick={() => {
                   setCount(count - 1)
                 }}
@@ -132,8 +106,8 @@ const ProductCard = ({ product }) => {
         </Stack>
 
         <Stack
-          direction='row'
           pt
+          direction='row'
           justifyContent='space-between'
         >
           <Typography

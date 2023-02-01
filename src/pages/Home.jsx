@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import api from '../utils/axios/Axios'
 
 // Material
 import { Stack, Grid, Zoom } from '@mui/material'
 
 // Components
 import ProductCard from '../components/product/ProductCard'
-import CategoryContainer from '../components/category/CategoryContainer'
+import CategoryContainer from '../components/container/CategoryContainer'
 
 const Home = () => {
   const [products, setProducts] = useState([])
   const [categoryArray, setCategoryArray] = useState([])
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/products')
+    api
+      .get('/products')
       .then(res => setProducts(res.data))
       .catch(err => console.log(err))
   }, [])

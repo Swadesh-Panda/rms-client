@@ -1,47 +1,30 @@
-import { IconButton } from '@mui/material'
-import RoundButton from './RoundButton'
+import { useContext } from 'react'
+
+// Material
+import { Button } from '@mui/material'
+
+// Components
+import { ScreenSizeContext } from '../../../context/ScreenSizeContext'
 
 const MobileButton = props => {
   const { children, startIcon, ...rest } = props
+  const screenSize = useContext(ScreenSizeContext)
 
-  const defaultStyles = {
-    textTransform: 'unset',
-    borderRadius: '12px',
-    fontWeight: 700,
-    display: { xs: startIcon ? 'none' : 'flex', sm: 'flex' },
-  }
-
-  const iconButtonStyles = {
-    backgroundColor: '#E0E0E0',
-    borderRadius: '12px',
-    '&:hover': {
-      backgroundColor: '#E0E0E0',
+  const smallButtonStyles = {
+    p: '10px',
+    '& .MuiButton-startIcon': {
+      margin: 0,
     },
-    display: { xs: 'flex', sm: children ? 'none' : 'flex' },
   }
 
   return (
-    <>
-      {children ? (
-        <RoundButton
-          startIcon={startIcon}
-          sx={defaultStyles}
-          {...rest}
-        >
-          {children}
-        </RoundButton>
-      ) : null}
-
-      {startIcon ? (
-        <IconButton
-          color='inherit'
-          sx={iconButtonStyles}
-          {...rest}
-        >
-          {startIcon}
-        </IconButton>
-      ) : null}
-    </>
+    <Button
+      startIcon={startIcon}
+      sx={!screenSize.sm && smallButtonStyles}
+      {...rest}
+    >
+      {screenSize.sm && children}
+    </Button>
   )
 }
 

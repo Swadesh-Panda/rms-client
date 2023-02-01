@@ -9,7 +9,7 @@
         "min": 30,
         "max": 40
       },
-      "src": "/products/Spiced-Paneer-Pizza.jpg"
+      "src": "/img/Spiced-Paneer-Pizza.jpg"
     },
     {
       "id": 2,
@@ -20,7 +20,7 @@
         "min": 40,
         "max": 60
       },
-      "src": "/products/burger-fries.jpg"
+      "src": "/img/burger-fries.jpg"
     }
   ]
 }

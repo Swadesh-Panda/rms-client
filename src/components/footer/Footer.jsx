@@ -1,6 +1,6 @@
 import { Stack, Divider, Typography } from '@mui/material'
 
-const DefaultFooter = props => {
+const Footer = props => {
   const { children, ...rest } = props
 
   const defaultStyles = {
@@ -22,4 +22,4 @@ const DefaultFooter = props => {
   )
 }
 
-export default DefaultFooter
+export default Footer

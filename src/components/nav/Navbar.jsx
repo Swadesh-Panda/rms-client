@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState, useEffect, useContext } from 'react'
+import api from '../../utils/axios/Axios'
 
 // Material
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { AppBar, Toolbar, Tooltip, Stack, Avatar, Divider, Badge } from '@mui/material'
+import { AppBar, Toolbar, Tooltip, Stack, Avatar, Button, Divider, Badge } from '@mui/material'
 import {
   FastfoodRounded,
   ShoppingCartOutlined,
@@ -14,24 +12,19 @@ import {
 
 // Components
 import BasicLink from '../common/link/BasicLink'
-import RoundButton from '../common/button/RoundButton'
 import MobileButton from '../common/button/MobileButton'
 import Searchbar from '../common/input/Searchbar'
+import { ScreenSizeContext } from '../../context/ScreenSizeContext'
 
 const Navbar = () => {
+  const screenSize = useContext(ScreenSizeContext)
+
   const [openSearch, setOpenSearch] = useState(false)
   const [searchOptions, setSearchOptions] = useState([])
 
-  const theme = useTheme()
-  const screenSize = {
-    sm: useMediaQuery(theme.breakpoints.down('sm')),
-    md: useMediaQuery(theme.breakpoints.down('md')),
-    lg: useMediaQuery(theme.breakpoints.down('lg')),
-  }
-
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/products')
+    api
+      .get('/products')
       .then(res => setSearchOptions(res.data))
       .catch(err => console.log(err))
   }, [])
@@ -52,7 +45,7 @@ const Navbar = () => {
           <Stack
             direction='row'
             alignItems='end'
-            gap={!screenSize.sm ? '10px' : '5px'}
+            gap={screenSize.sm ? '10px' : '5px'}
             padding='10px'
             flexGrow={1}
           >
@@ -62,7 +55,7 @@ const Navbar = () => {
               </Tooltip>
             </BasicLink>
 
-            {!screenSize.sm ? (
+            {screenSize.sm ? (
               <Searchbar options={searchOptions} />
             ) : (
               <MobileButton
@@ -78,12 +71,13 @@ const Navbar = () => {
             gap='10px'
             padding='10px'
           >
-            <RoundButton
+            <Button
               variant='text'
-              size={!screenSize.md ? 'large' : 'medium'}
+              color='inherit'
+              size={screenSize.md ? 'large' : 'medium'}
             >
               Order History
-            </RoundButton>
+            </Button>
 
             <Divider
               orientation='vertical'
@@ -114,7 +108,7 @@ const Navbar = () => {
         </Stack>
       </Toolbar>
 
-      {openSearch ? <Searchbar options={searchOptions} /> : null}
+      {openSearch && <Searchbar options={searchOptions} />}
     </AppBar>
   )
 }

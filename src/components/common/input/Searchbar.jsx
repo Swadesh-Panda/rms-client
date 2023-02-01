@@ -1,6 +1,6 @@
+import { useContext } from 'react'
+
 // Material
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import { Autocomplete, InputBase, InputAdornment, Fade, Paper } from '@mui/material'
 import { SearchRounded } from '@mui/icons-material'
 
@@ -8,20 +8,18 @@ import { SearchRounded } from '@mui/icons-material'
 import parse from 'autosuggest-highlight/parse'
 import match from 'autosuggest-highlight/match'
 
+// Components
+import { ScreenSizeContext } from '../../../context/ScreenSizeContext'
+
 const Searchbar = props => {
-  const theme = useTheme()
-  const screenSize = {
-    sm: useMediaQuery(theme.breakpoints.down('sm')),
-    md: useMediaQuery(theme.breakpoints.down('md')),
-    lg: useMediaQuery(theme.breakpoints.down('lg')),
-  }
+  const screenSize = useContext(ScreenSizeContext)
 
   const DefaultPaperComponent = props => {
     return (
       <Fade in={true}>
         <Paper
-          variant={!screenSize.sm ? 'outlined' : 'elevation'}
-          elevation={!screenSize.sm ? 0 : 5}
+          variant={screenSize.sm ? 'outlined' : 'elevation'}
+          elevation={screenSize.sm ? 0 : 5}
           sx={{
             borderRadius: '12px',
             mt: '10px',
@@ -39,8 +37,8 @@ const Searchbar = props => {
   const defaultStyles = {
     p: '5px 10px',
     bgcolor: '#EDEEF2',
-    borderRadius: !screenSize.sm ? '12px' : 0,
-    width: !screenSize.sm ? { sm: '200px', md: '250px' } : '100%',
+    borderRadius: { sm: '12px', xs: 0 },
+    width: screenSize.sm ? { sm: '200px', md: '250px' } : '100%',
   }
 
   return (
@@ -62,7 +60,7 @@ const Searchbar = props => {
         return (
           <InputBase
             fullWidth
-            placeholder='Search...'
+            placeholder='Search here...'
             {...InputProps}
             {...rest}
             endAdornment={
