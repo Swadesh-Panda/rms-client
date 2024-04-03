@@ -1,26 +1,4 @@
 {
   "products": [
-    {
-      "id": 1,
-      "title": "Spiced Paneer Pizza",
-      "price": 430,
-      "category": "Pizza",
-      "time": {
-        "min": 30,
-        "max": 40
-      },
-      "src": "/img/Spiced-Paneer-Pizza.jpg"
-    },
-    {
-      "id": 2,
-      "title": "Burger Fries",
-      "price": 260,
-      "category": "Burger",
-      "time": {
-        "min": 40,
-        "max": 60
-      },
-      "src": "/img/burger-fries.jpg"
-    }
   ]
 }

@@ -1,14 +1,32 @@
 // Material
-import { ThemeProvider, Stack, Box } from '@mui/material'
+import { ThemeProvider, Stack, Box, Modal } from '@mui/material'
 
 // Components
 import lightTheme from '../../../theme/lightTheme'
 import NavBar from '../../nav/Navbar'
 import Footer from '../../footer/Footer'
+import { useContext } from 'react'
+import { AuthContext } from '../../../context/AuthContext'
+import SignUp from '../../../pages/SignUp'
 
 const DefaultLayout = ({ children }) => {
+  const { user } = useContext(AuthContext)
+
   return (
     <ThemeProvider theme={lightTheme}>
+      <Modal
+        open={localStorage.getItem('user') ? false : true}
+      >
+        <Box
+          height='100%'
+          display='flex'
+          justifyContent='center'
+          alignItems='center'
+        >
+          <SignUp />
+        </Box>
+      </Modal>
+
       <Stack
         minHeight='100vh'
         justifyContent='space-between'

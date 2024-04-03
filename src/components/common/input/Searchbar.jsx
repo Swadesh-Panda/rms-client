@@ -60,6 +60,7 @@ const Searchbar = props => {
         return (
           <InputBase
             fullWidth
+            autoFocus={screenSize.sm ? false : true}
             placeholder='Search here...'
             {...InputProps}
             {...rest}

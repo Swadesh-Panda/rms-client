@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import api from '../utils/axios/Axios'
 
 // Material
-import { Stack, Grid, Zoom } from '@mui/material'
+import { Stack, Grid, Zoom, Button } from '@mui/material'
 
 // Components
 import ProductCard from '../components/product/ProductCard'
@@ -16,7 +16,7 @@ const Home = () => {
     api
       .get('/products')
       .then(res => setProducts(res.data))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.message))
   }, [])
 
   return (

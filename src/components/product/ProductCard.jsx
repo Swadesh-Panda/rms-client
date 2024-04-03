@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // Material
 import {
@@ -13,6 +13,7 @@ import {
   ButtonGroup,
   Button,
   Slide,
+  Rating,
   Snackbar,
   Alert,
 } from '@mui/material'
@@ -25,18 +26,34 @@ import {
   CurrencyRupeeRounded,
   Close,
 } from '@mui/icons-material'
+import cartApi from '../../utils/axios/Cartapi'
 
 const ProductCard = ({ product }) => {
-  const { title, src, time, price, category } = product
+  const { title, img, minTime, maxTime, price, category } = product
   const [count, setCount] = useState(0)
+
+  // useEffect(() => {
+  //   if (count)
+  //     cartApi.post('/products', {
+  //       id: 1,
+  //       title: title,
+  //       price: price,
+  //       category: category,
+  //       time: {
+  //         min: minTime,
+  //         max: maxTime,
+  //       },
+  //       src: `http://localhost:4000/api/cdn/${img}`,
+  //     })
+  // }, [count])
 
   return (
     <Card>
       <CardMedia
         component='img'
-        height='160px'
+        height='170px'
         alt={title}
-        image={src}
+        image={`http://localhost:4000/api/cdn/${img}`}
       />
       <CardContent sx={{ position: 'relative' }}>
         <Stack
@@ -119,7 +136,7 @@ const ProductCard = ({ product }) => {
               fontSize='small'
               sx={{ mr: '2px' }}
             />
-            {time.min}-{time.max} mins
+            {minTime}-{maxTime} mins
           </Typography>
 
           <Typography

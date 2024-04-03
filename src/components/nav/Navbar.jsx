@@ -15,9 +15,11 @@ import BasicLink from '../common/link/BasicLink'
 import MobileButton from '../common/button/MobileButton'
 import Searchbar from '../common/input/Searchbar'
 import { ScreenSizeContext } from '../../context/ScreenSizeContext'
+import { AuthContext } from '../../context/AuthContext'
 
 const Navbar = () => {
   const screenSize = useContext(ScreenSizeContext)
+  const { user } = useContext(AuthContext)
 
   const [openSearch, setOpenSearch] = useState(false)
   const [searchOptions, setSearchOptions] = useState([])
@@ -26,11 +28,12 @@ const Navbar = () => {
     api
       .get('/products')
       .then(res => setSearchOptions(res.data))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.message))
   }, [])
 
   return (
     <AppBar
+      // position="fixed"
       color='inherit'
       variant='outlined'
       elevation={0}

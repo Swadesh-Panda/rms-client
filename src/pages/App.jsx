@@ -7,6 +7,8 @@ import Cart from './Cart'
 import Settings from './Settings'
 
 import NotFound from '../components/error/404'
+import SignUp from './SignUp'
+import Login from './Login'
 
 function App() {
   return (
@@ -24,6 +26,14 @@ function App() {
           path='/settings'
           element={<Settings />}
         />
+        <Route
+          path='/signup'
+          element={<SignUp />}
+        />
+        <Route
+          path='/login'
+          element={<Login />}
+        />
 
         <Route
           path='*'
@@ -32,6 +42,6 @@ function App() {
       </Routes>
     </DefaultLayout>
   )
-}
+}                     
 
 export default App
