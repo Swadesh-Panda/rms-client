@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Card, CardHeader, CardContent, Grid, TextField, Button, Stack } from '@mui/material'
 import api from '../utils/axios/Axios'
 import { AuthContext } from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const { dispatch } = useContext(AuthContext)
@@ -14,7 +14,8 @@ const SignUp = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
-    localStorage.setItem('user', JSON.stringify({email, password}))
+    localStorage.setItem('user', JSON.stringify({ email, password }))
+    location.reload(true)
 
     // api
     //   .post('/user/signup', { email, password })
